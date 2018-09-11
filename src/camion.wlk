@@ -23,16 +23,27 @@ object camion {
  	var carga = []
  		
 	method cargar(unaCosa) { carga.add(unaCosa) }
+	
 	method descargar(unaCosa) { carga.remove(unaCosa) }
+	
 	method pesoTotal() = tara + carga.sum{ elemento => elemento.peso() }
-	method excedidoDePeso() {}
+	
+	method excedidoDePeso() {
+		const pesoMax = 2500
+		return self.pesoTotal()>pesoMax
+	}
+	
 	method objetosPeligrosos(n) = carga.filter{ elemento => elemento.peligrosidad() > n }
+	
 	method objetosMasPeligrososQue(unaCosa) {}
+	
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad) {
 		return carga.all{ elemento => elemento.peligrosidad() <= nivelMaximoPeligrosidad }
 	}
+	
 	method tieneAlgoQuePasaEntre(min, max) {
 		return carga.any{ elemento => elemento.pes().between(min,max) }
 	}
+	
 	method cosaMasPesada() = carga.max{ elemento => elemento.peso() }
 }

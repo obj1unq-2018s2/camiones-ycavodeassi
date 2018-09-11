@@ -59,7 +59,7 @@ object bateriaAntiaerea {
 }
 	
 object contenedorPortuario {
-	var property cosasCargadas = []
+	const property cosasCargadas = []
 	
 	method peso() = 100 + cosasCargadas.sum({ unaCosa => unaCosa.peso() })
 	method nivelDePeligrosidad() {
@@ -67,7 +67,7 @@ object contenedorPortuario {
 			return 0
 		}
 		else {
-			return self.cosasCargadas().max({ unaCosa => unaCosa.nivelDePeligrosidad() })	
+			return self.cosasCargadas().max({ unaCosa => unaCosa.nivelDePeligrosidad() }).nivelDePeligrosidad()
 		}
 	}
 }

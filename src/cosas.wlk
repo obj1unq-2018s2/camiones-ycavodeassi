@@ -42,14 +42,15 @@ object bateriaAntiaerea {
 }
 	
 object contenedorPortuario {
-	const property cosasCargadas = [] // la referencia a la lista nunca cambia :: const
+	const cosasCargadas = [] // la referencia a la lista nunca cambia de la lista.
 	
+	method agregarCosas(unaCosa) { cosasCargadas.add(unaCosa)}
 	method peso() = 100 + cosasCargadas.sum({ unaCosa => unaCosa.peso() })
 	
 	method nivelDePeligrosidad() {
 		return
-				if (self.cosasCargadas().isEmpty()) { 0 }
-				else { self.cosasCargadas().max({ unaCosa => unaCosa.nivelDePeligrosidad() }).nivelDePeligrosidad() }
+				if (cosasCargadas.isEmpty()) { 0 }
+				else { cosasCargadas.max({ unaCosa => unaCosa.nivelDePeligrosidad() }).nivelDePeligrosidad() }
 	}
 }
 
